@@ -21,12 +21,14 @@ function App() {
   const logeo = async (event) => {
     event.preventDefault()
     try {
-      const { data,token } = await axios.post('http://localhost:5500/userinterno/login', {nombreUsuario,contrasenia})
+      const { data} = await axios.post('http://localhost:5500/userinterno/login', {nombreUsuario,contrasenia})
+      let usuarioNombre=data.data.username;
+      let token=data.token;
       window.localStorage.setItem(
-        'infoUsuario', JSON.stringify({data,token})
+        'infoUsuario', JSON.stringify({usuarioNombre,token})
       )
-      servicios.setToken(token)
-      setUsuario({data,token})
+      servicios.setToken(data.token)
+      setUsuario({data})
       setNombreUsuario('')
       setContrasenia('')
     } catch(e) {

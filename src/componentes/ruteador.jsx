@@ -1,6 +1,7 @@
 import React from "react";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import Navbar from './navbar';
+import Navadmin from "./navadmin";
 import Noticias from "./noticias";
 import Foot from "./piepagina";
 import Cumpleanios from "./cumpleanios";
