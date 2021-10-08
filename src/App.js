@@ -18,18 +18,6 @@ function App() {
       servicios.setToken(usuario.token);//me guardo la token para despues estar pasandola a la api y no ir constantemente al local storage
     }
   }, [])
-
-/***
- * Al deslogearse debo borrar todo rastro de la sesion del usuario
- * por lo tanto tengo que borrar del local storage la token y tambien de los 
- * servicios.
- */
-  const manejadorDeslogeo = () => {
-    setUsuario(null)
-    servicios.setToken(null)
-    window.localStorage.removeItem('infoUsuario')
-  }
-
   const logeo = async (event) => {
     event.preventDefault()
     try {
@@ -44,7 +32,16 @@ function App() {
     } catch(e) {
       console.log(e.message)
     }
-
+  }
+  /***
+ * Al deslogearse debo borrar todo rastro de la sesion del usuario
+ * por lo tanto tengo que borrar del local storage la token y tambien de los 
+ * servicios.
+ */
+   const manejadorDeslogeo = () => {
+    setUsuario(null)
+    servicios.setToken(null)
+    window.localStorage.removeItem('infoUsuario')
   }
   return (
     <div className="App">
