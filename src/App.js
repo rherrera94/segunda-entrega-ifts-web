@@ -1,32 +1,62 @@
-
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import "normalize.css";
 import './App.css';
-import Navbar from './componentes/navbar';
-import Noticias from "./componentes/noticias";
-import Foot from "./componentes/piepagina";
-import Cumpleanios from "./componentes/cumpleanios";
-import Capacitacion from "./componentes/capacitacion";
-import Contacto from "./componentes/contacto";
+import Ruteador from './componentes/ruteador';
+import servicios from "./servicio/services";
+import Login from './componentes/login';
 function App() {
-  let meses=["Enero","febrero","marzo","abril","mayo","junio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]
-  let d=new Date();
-  let fech=d.getDate()+" de "+meses[d.getMonth()-1]+" de "+d.getFullYear();
+  const [nombreUsuario,setNombreUsuario] = useState('');
+  const [contrasenia,setContrasenia] = useState('');
+  const [usuario, setUsuario] = useState(null);
+
+  useEffect(() => {
+    const usuarioLogeado = window.localStorage.getItem('infoUsuario');//intento obtener la informacion del usuario del local storage
+    if (usuarioLogeado) { //si el usuario ya esta logeado
+      const usuario = JSON.parse(usuarioLogeado);//agarro la informacion que me llego del usuario
+      setUsuario(usuario);//seteo el usuario con esa informacion
+      servicios.setToken(usuario.token);//me guardo la token para despues estar pasandola a la api y no ir constantemente al local storage
+    }
+  }, [])
+
+/***
+ * Al deslogearse debo borrar todo rastro de la sesion del usuario
+ * por lo tanto tengo que borrar del local storage la token y tambien de los 
+ * servicios.
+ */
+  const manejadorDeslogeo = () => {
+    setUsuario(null)
+    servicios.setToken(null)
+    window.localStorage.removeItem('infoUsuario')
+  }
+
+  const logeo = async (event) => {
+    event.preventDefault()
+    try {
+      const { data,token } = await axios.post('http://localhost:5500/userinterno/login', {nombreUsuario,contrasenia})
+      window.localStorage.setItem(
+        'infoUsuario', JSON.stringify({data,token})
+      )
+      servicios.setToken(token)
+      setUsuario({data,token})
+      setNombreUsuario('')
+      setContrasenia('')
+    } catch(e) {
+      console.log(e.message)
+    }
+
+  }
+
+ 
   return (
     <div className="App">
-      <Router>
-        <Navbar></Navbar>
-        <div className="container-fecha">
-            <div className="cointainer-fecha-linea"></div>
-            <div className="container-fecha-fecha">{fech}</div>
-            <div className="cointainer-fecha-linea"></div>
-        </div>
-        <Route exact path="/" component={Noticias}/>
-        <Route exact path="/capacitacion" component={Capacitacion}/>
-        <Route exact path="/cumpleanios" component={Cumpleanios}/>
-        <Route exact path="/telefonos-utiles" component={Contacto}/>
-      </Router>
-      <Foot></Foot>
+      {
+        usuario? <Ruteador manejadorDeslogeo={manejadorDeslogeo}></Ruteador>:
+        <Login nombreUsuario={nombreUsuario} contrasenia={contrasenia} 
+        manejadorUsuarioCambio={({target}) => setNombreUsuario(target.value)}
+        manejadorContraseniaCambio={({target}) => setContrasenia(target.value)}
+        handleSubmit={logeo}></Login>
+      } 
     </div>
   );
 }

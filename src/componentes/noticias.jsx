@@ -4,7 +4,7 @@ import img3 from '../images/janne-rieck-6-7IzyoOfqc-unsplash.jpg';
 import img4 from '../images/lactario.jpg';
 import img5 from '../images/capacitacion.jpg';
 import img6 from '../images/guardabici.jpg';
-import Login from './login';
+
 export default function Noticias() {
    
     return (
@@ -75,8 +75,7 @@ export default function Noticias() {
         Se le recuerda a todo el personal la obligacion de utilizar tapabocas en todos
         los sectores de la empresa y que se debe mantener el distanciamiento social.<br/>
         A su vez, se les recuerda que podrán acceder a los ascensores de a dos personas a la vez.
-        </div>
-        <Login></Login>            
+        </div>           
 </aside>
 </section> 
 </div>
