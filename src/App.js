@@ -56,6 +56,8 @@ function App() {
  */
    const manejadorDeslogeo = () => {
     setUsuario(null)
+    setAdmin(false);
+    setContrasenia("");
     servicios.setToken(null)
     window.localStorage.removeItem('infoUsuario')
   }

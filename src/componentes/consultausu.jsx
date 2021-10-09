@@ -5,6 +5,7 @@ export default function Consultausu() {
 
     const [information,setInformation]=React.useState([]);
     const [lists,setLists]=React.useState(0);
+
     function info (){
         const listadoUsuarios=async()=>{
             try{
@@ -17,11 +18,37 @@ export default function Consultausu() {
         }
         listadoUsuarios();
     } 
-   
+
+    function borrador(usuario){
+        const modificacion=async(user)=>{
+            try{
+                //el null es por que en ese espacio van las opciones del body que en este caso ira vacio
+                await axios.put(`http://localhost:5500/userinterno/borrado/${user}`,null,servicios.enviarToken());
+                info();
+            }catch(e){
+                console.log(e);
+            }
+        }
+        modificacion(usuario);
+    }
+
+    function rehabilitar(usuario){
+        const habilita=async(user)=>{
+            try{
+                //el null es por que en ese espacio van las opciones del body que en este caso ira vacio
+                await axios.put('/userinterno/rehabilitar/'+user,null,servicios.enviarToken());
+                info();
+            }catch(e){
+                console.log(e.message);
+            }
+        }
+        habilita(usuario);
+    }
+
     React.useEffect(() => {
-        
         info();
     }, []);
+
     if(lists===1 && information.length!==0){
         return (
             <div>
@@ -36,6 +63,7 @@ export default function Consultausu() {
                                 <th>Mail</th>
                                 <th>Rol</th>
                                 <th>Baja</th>
+                                <th>Acción</th>
                             </tr>
                             {information.map((unUsuario, index) => {
                                
@@ -47,6 +75,11 @@ export default function Consultausu() {
                                             <td>{unUsuario.mail}</td>
                                             <td>{unUsuario.rol}</td>
                                             <td>{unUsuario.baja}</td>
+                                            {
+                                                !unUsuario.baja?
+                                                <td><button type="button" onClick={() => borrador(unUsuario.usuario.toLowerCase()) }>Inhabilitar</button></td>:
+                                                <td><button type="button" onClick={() => rehabilitar(unUsuario.usuario.toLowerCase()) }>rehabilitar</button></td>
+                                            }
                                         </tr>         
                                         );
                            })}
@@ -61,7 +94,4 @@ export default function Consultausu() {
             <div></div>
         )
     }
-        
-        
-   
-    }
+}
