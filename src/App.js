@@ -42,12 +42,11 @@ function App() {
         if (permits[i].id==="PERMIT_ADMINISTRATE"){
           setAdmin(true);
         }
-        console.log(permits[i])
       }
       setNombreUsuario('')
       setContrasenia('')
     } catch(e) {
-      console.log(e.message)
+      console.log("error "+e.message)
     }
   }
   /***
