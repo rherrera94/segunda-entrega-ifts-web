@@ -9,26 +9,41 @@ function App() {
   const [nombreUsuario,setNombreUsuario] = useState('');
   const [contrasenia,setContrasenia] = useState('');
   const [usuario, setUsuario] = useState(null);
+  const [admin,setAdmin]= useState(false);
 
   useEffect(() => {
+    setAdmin(false);
     const usuarioLogeado = window.localStorage.getItem('infoUsuario');//intento obtener la informacion del usuario del local storage
     if (usuarioLogeado) { //si el usuario ya esta logeado
       const usuario = JSON.parse(usuarioLogeado);//agarro la informacion que me llego del usuario
       setUsuario(usuario);//seteo el usuario con esa informacion
+      for(let i=0;i<usuario.permits.length;i++){
+        if (usuario.permits[i].id==="PERMIT_ADMINISTRATE"){
+          setAdmin(true);
+        }
+      }
       servicios.setToken(usuario.token);//me guardo la token para despues estar pasandola a la api y no ir constantemente al local storage
     }
   }, [])
   const logeo = async (event) => {
     event.preventDefault()
     try {
+      setAdmin(false);
       const { data} = await axios.post('http://localhost:5500/userinterno/login', {nombreUsuario,contrasenia})
       let usuarioNombre=data.data.username;
       let token=data.token;
+      let permits=data.data.role.role_permits;
       window.localStorage.setItem(
-        'infoUsuario', JSON.stringify({usuarioNombre,token})
+        'infoUsuario', JSON.stringify({usuarioNombre,token,permits})
       )
       servicios.setToken(data.token)
-      setUsuario({data})
+      setUsuario({usuarioNombre,token,permits})
+      for(let i=0;i<permits.length;i++){
+        if (permits[i].id==="PERMIT_ADMINISTRATE"){
+          setAdmin(true);
+        }
+        console.log(permits[i])
+      }
       setNombreUsuario('')
       setContrasenia('')
     } catch(e) {
@@ -48,7 +63,7 @@ function App() {
   return (
     <div className="App">
       {
-        usuario? <Ruteador manejadorDeslogeo={manejadorDeslogeo}></Ruteador>:
+        usuario? <Ruteador manejadorDeslogeo={manejadorDeslogeo} admin={admin}></Ruteador>:
         <Login nombreUsuario={nombreUsuario} contrasenia={contrasenia} 
         manejadorUsuarioCambio={({target}) => setNombreUsuario(target.value)}
         manejadorContraseniaCambio={({target}) => setContrasenia(target.value)}
