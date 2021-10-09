@@ -11,7 +11,6 @@ export default function Ruteador({manejadorDeslogeo,...props}) {
     let meses=["Enero","febrero","marzo","abril","mayo","junio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]
     let d=new Date();
     let fech=d.getDate()+" de "+meses[d.getMonth()-1]+" de "+d.getFullYear();
-    console.log(props)
     return (
         <div>
             <Router>
