@@ -4,8 +4,7 @@ const setToken = cifrado => {
     token = `Bearer ${cifrado}`
 }
 
-const enviarToken = () => {
-  console.log(token)  
+const enviarToken = () => { 
   const config = {
       headers: {
         Authorization: token
