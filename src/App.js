@@ -29,7 +29,7 @@ function App() {
     event.preventDefault()
     try {
       setAdmin(false);
-      const { data} = await axios.post('http://localhost:5500/userinterno/login', {nombreUsuario,contrasenia})
+      const { data} = await axios.post('/userinterno/login', {nombreUsuario,contrasenia})
       let usuarioNombre=data.data.username;
       let token=data.token;
       let permits=data.data.role.role_permits;

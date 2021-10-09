@@ -7,6 +7,7 @@ import Foot from "./piepagina";
 import Cumpleanios from "./cumpleanios";
 import Capacitacion from "./capacitacion";
 import Contacto from "./contacto";
+import Consultausu from "./consultausu";
 export default function Ruteador({manejadorDeslogeo,...props}) {
     let meses=["Enero","febrero","marzo","abril","mayo","junio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]
     let d=new Date();
@@ -19,7 +20,7 @@ export default function Ruteador({manejadorDeslogeo,...props}) {
                 </div>
                 <Navbar></Navbar>
                 {
-                    props.admin?<Navadmin></Navadmin>:<div></div>
+                    props.admin?<Navadmin></Navadmin>:<div></div> 
                 }
                 <div className="container-fecha">
                     <div className="cointainer-fecha-linea"></div>
@@ -30,6 +31,7 @@ export default function Ruteador({manejadorDeslogeo,...props}) {
                 <Route exact path="/capacitacion" component={Capacitacion}/>
                 <Route exact path="/cumpleanios" component={Cumpleanios}/>
                 <Route exact path="/telefonos-utiles" component={Contacto}/>
+                {props.admin? <Route exact path="/consultausu" component={Consultausu}/>:null}
             </Router>
             <Foot></Foot>
         </div>

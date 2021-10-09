@@ -5,7 +5,8 @@ const setToken = cifrado => {
 }
 
 const enviarToken = () => {
-    const config = {
+  console.log(token)  
+  const config = {
       headers: {
         Authorization: token
       }
