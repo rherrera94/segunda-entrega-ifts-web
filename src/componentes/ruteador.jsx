@@ -9,6 +9,7 @@ import Capacitacion from "./capacitacion";
 import Contacto from "./contacto";
 import Consultausu from "./consultausu";
 import Altausu from "./altausu";
+import Altaempleado from "./altaempleado";
 export default function Ruteador({manejadorDeslogeo,...props}) {
     let meses=["Enero","febrero","marzo","abril","mayo","junio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]
     let d=new Date();
@@ -34,6 +35,7 @@ export default function Ruteador({manejadorDeslogeo,...props}) {
                 <Route exact path="/telefonos-utiles" component={Contacto}/>
                 {props.admin? <Route exact path="/consultausu" component={Consultausu}/>:null}
                 {props.admin? <Route exact path="/altausu" component={Altausu}/>:null}
+                {props.admin? <Route exact path="/altaempleado" component={Altaempleado}/>:null}
             </Router>
             <Foot></Foot>
         </div>
