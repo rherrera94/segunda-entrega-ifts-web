@@ -5,6 +5,8 @@ import './App.css';
 import Ruteador from './componentes/ruteador';
 import servicios from "./servicio/services";
 import Login from './componentes/login';
+import swal from 'sweetalert';
+
 function App() {
   const [nombreUsuario,setNombreUsuario] = useState('');
   const [contrasenia,setContrasenia] = useState('');
@@ -13,23 +15,35 @@ function App() {
 
   useEffect(() => {
     setAdmin(false);
-    const usuarioLogeado = window.localStorage.getItem('infoUsuario');//intento obtener la informacion del usuario del local storage
-    if (usuarioLogeado) { //si el usuario ya esta logeado
-      const usuario = JSON.parse(usuarioLogeado);//agarro la informacion que me llego del usuario
-      setUsuario(usuario);//seteo el usuario con esa informacion
-      for(let i=0;i<usuario.permits.length;i++){
-        if (usuario.permits[i].id==="PERMIT_ADMINISTRATE"){
-          setAdmin(true);
+    try{
+      const usuarioLogeado = window.localStorage.getItem('infoUsuario');//intento obtener la informacion del usuario del local storage
+      if (usuarioLogeado) { //si el usuario ya esta logeado
+        const usuario = JSON.parse(usuarioLogeado);//agarro la informacion que me llego del usuario
+        setUsuario(usuario);//seteo el usuario con esa informacion
+        for(let i=0;i<usuario.permits.length;i++){
+          if (usuario.permits[i].id==="PERMIT_ADMINISTRATE"){
+            setAdmin(true);
+          }
         }
-      }
       servicios.setToken(usuario.token);//me guardo la token para despues estar pasandola a la api y no ir constantemente al local storage
+      }
+    }catch(e){
+      swal({
+        title:"Error: ",
+        text: e.response.data.error,
+        icon:"warning",
+        buttons:["aceptar",0]})
+    .then(()=>{
+        return;
+    })
     }
   }, [])
+
   const logeo = async (event) => {
     event.preventDefault()
     try {
       setAdmin(false);
-      const { data} = await axios.post('/userinterno/login', {nombreUsuario,contrasenia})
+      const {data} = await axios.post('/userinterno/login', {nombreUsuario,contrasenia})
       let usuarioNombre=data.data.username;
       let token=data.token;
       let permits=data.data.role.role_permits;
@@ -46,7 +60,14 @@ function App() {
       setNombreUsuario('')
       setContrasenia('')
     } catch(e) {
-      console.log("error "+e.message)
+      swal({
+        title:"Error: ",
+        text: e.response.data.error,
+        icon:"warning",
+        buttons:["aceptar",0]})
+    .then(()=>{
+        return;
+    })
     }
   }
   /***

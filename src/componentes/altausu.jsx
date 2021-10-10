@@ -4,6 +4,7 @@ import axios from "axios";
 import React, { useState } from 'react';
 import servicios from "../servicio/services";
 import { useHistory } from 'react-router-dom';
+import swal from 'sweetalert';
 export default function Altausu() {
     const [usuario,setNombreUsuario] = useState('');
     const [contrasenia,setContrasenia] = useState('');
@@ -20,7 +21,14 @@ export default function Altausu() {
                 
               }
         }catch(e){
-            console.log(e)
+            swal({
+                title:"Error: ",
+                text: e.response.data.error,
+                icon:"warning",
+                buttons:["aceptar",0]})
+            .then(()=>{
+                return;
+            })
         }
         
 

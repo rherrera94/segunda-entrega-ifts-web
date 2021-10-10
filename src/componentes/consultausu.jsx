@@ -1,6 +1,7 @@
 import servicios from '../servicio/services';
 import axios from 'axios';
 import React from 'react';
+import swal from 'sweetalert';
 export default function Consultausu() {
 
     const [information,setInformation]=React.useState([]);
@@ -13,7 +14,14 @@ export default function Consultausu() {
                 setInformation(respuesta.data);
                 setLists(1);
             }catch(e){
-                console.log(e.message);
+                swal({
+                    title:"Error: ",
+                    text: e.response.data.error,
+                    icon:"warning",
+                    buttons:["aceptar",0]})
+                .then(()=>{
+                    return;
+                })
             }
         }
         listadoUsuarios();
@@ -26,7 +34,14 @@ export default function Consultausu() {
                 await axios.put(`http://localhost:5500/userinterno/borrado/${user}`,null,servicios.enviarToken());
                 info();
             }catch(e){
-                console.log(e);
+                swal({
+                    title:"Error: ",
+                    text: e.response.data.error,
+                    icon:"warning",
+                    buttons:["aceptar",0]})
+                .then(()=>{
+                    return;
+                })
             }
         }
         modificacion(usuario);
@@ -39,7 +54,14 @@ export default function Consultausu() {
                 await axios.put('/userinterno/rehabilitar/'+user,null,servicios.enviarToken());
                 info();
             }catch(e){
-                console.log(e.message);
+                swal({
+                    title:"Error: ",
+                    text: e.response.data.error,
+                    icon:"warning",
+                    buttons:["aceptar",0]})
+                .then(()=>{
+                    return;
+                })
             }
         }
         habilita(usuario);
