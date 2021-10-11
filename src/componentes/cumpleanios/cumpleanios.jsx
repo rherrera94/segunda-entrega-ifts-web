@@ -15,7 +15,7 @@ export default function Cumpleanios() {
                 setLists(1);
             }catch(e){
                 swal({
-                    title:"Error: ",
+                    title:"Se ha producido un Error: ",
                     text: e.response.data.error,
                     icon:"warning",
                     buttons:["aceptar",0]})
@@ -37,7 +37,8 @@ export default function Cumpleanios() {
                         <tbody>
                             <tr> 
                                 <th>Día</th> 
-                                <th>Empleado</th> 
+                                <th>Empleado</th>
+                                <th>Mail</th> 
                             </tr>
                             {empleados.map((unEmpleado, index) => {
                                 let d=new Date(unEmpleado.nacimiento);
@@ -48,6 +49,7 @@ export default function Cumpleanios() {
                                         <tr key={index}>
                                             <td>{dia}</td> 
                                             <td>{unEmpleado.nombre} {unEmpleado.apellido}</td>
+                                            <td>{unEmpleado.mail}</td>
                                         </tr>         
                                         );
                                 }

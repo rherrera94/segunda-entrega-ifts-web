@@ -10,6 +10,7 @@ export default function Navadmin() {
                     <li><Link to="/cambiocontrasenia">Cambio contraseña </Link></li>
                     <li><Link to="/altaempleado">Alta empleado</Link></li>
                     <li><Link to="/consultaempleado">Consulta empleados</Link></li>
+                    <li><Link to="/capacitacionnew">Crear Capacitacion</Link></li>
                 </ul>
             </div>
         </nav>
