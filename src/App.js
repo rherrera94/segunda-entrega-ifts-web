@@ -49,12 +49,12 @@ function App() {
       let permits=data.data.role.role_permits;
       window.localStorage.setItem(
         'infoUsuario', JSON.stringify({usuarioNombre,token,permits})
-      )
-      servicios.setToken(data.token)
+      )//guardo en el local storage la informacion de la sesión
+      servicios.setToken(data.token)//para no estar ingresando al local storage constantemente guardo la token
       setUsuario({usuarioNombre,token,permits})
       for(let i=0;i<permits.length;i++){
         if (permits[i].id==="PERMIT_ADMINISTRATE"){
-          setAdmin(true);
+          setAdmin(true);//seteo admin como true para que le aparezca la barra de herramientas de administrador
         }
       }
       setNombreUsuario('')
