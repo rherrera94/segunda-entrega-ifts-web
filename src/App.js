@@ -29,7 +29,7 @@ function App() {
       }
     }catch(e){
       swal({
-        title:"Error: ",
+        title:"Se ha producido un Error: ",
         text: e.response.data.error,
         icon:"warning",
         buttons:["aceptar",0]})
@@ -61,7 +61,7 @@ function App() {
       setContrasenia('')
     } catch(e) {
       swal({
-        title:"Error: ",
+        title:"Se ha producido un Error: ",
         text: e.response.data.error,
         icon:"warning",
         buttons:["aceptar",0]})
@@ -82,6 +82,11 @@ function App() {
     servicios.setToken(null)
     window.localStorage.removeItem('infoUsuario')
   }
+  /**
+   * Lo que estamos haciendo se llama renderizado condicional, esto es según el estado de usuario
+   * se va a renderizar el Login o se va a renderizar la pagina. De este modo si el usuario no está
+   * logeado no conocerá de las rutas de la aplicacion.
+   */
   return (
     <div className="App">
       {

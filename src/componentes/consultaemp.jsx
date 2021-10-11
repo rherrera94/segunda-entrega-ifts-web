@@ -89,19 +89,19 @@ export default function Consultaemp() {
                                 <th>Acción</th>
                             </tr>
                             {information.map((unUsuario, index) => {
-                               
+                               let d=new Date(unUsuario.nacimiento);
                                     return (
                                         <tr key={index}>
                                             <td>{unUsuario.cuil}</td> 
                                             <td>{unUsuario.apellido}</td>
                                             <td>{unUsuario.nombre}</td>
                                             <td>{unUsuario.mail}</td>
-                                            <td>{unUsuario.nacimiento}</td>
+                                            <td>{d.getDay()}/{d.getMonth()}/{d.getFullYear()}</td>
                                             <td>{unUsuario.cargo}</td>
-                                            <td>{unUsuario.eliminado}</td>
+                                            {unUsuario.eliminado?<td>Si</td>:<td>No</td>}
                                             {
                                                 !unUsuario.eliminado?
-                                                <td><button type="button" onClick={() => borrador(unUsuario.cuil) }>Inhabilitar</button></td>:
+                                                <td><button type="button" onClick={() => borrador(unUsuario.cuil) }>Dar de Baja</button></td>:
                                                 <td><button type="button" onClick={() => rehabilitar(unUsuario.cuil) }>rehabilitar</button></td>
                                             }
                                         </tr>         

@@ -6,9 +6,10 @@ export default function Navadmin() {
             <div className="enlaces">
                 <ul className="barra-links">
                     <li><Link to="/altausu">Alta usuario</Link></li>
-                    <li><Link to="/consultausu">consulta usuario</Link></li>
+                    <li><Link to="/consultausu">Consulta usuario</Link></li>
+                    <li><Link to="/cambiocontrasenia">Cambio contraseña </Link></li>
                     <li><Link to="/altaempleado">Alta empleado</Link></li>
-                    <li><Link to="/consultaempleado">consulta empleados</Link></li>
+                    <li><Link to="/consultaempleado">Consulta empleados</Link></li>
                 </ul>
             </div>
         </nav>

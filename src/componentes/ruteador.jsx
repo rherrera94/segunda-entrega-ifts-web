@@ -11,6 +11,7 @@ import Consultausu from "./consultausu";
 import Altausu from "./altausu";
 import Altaempleado from "./altaempleado";
 import Consultaemp from "./consultaemp";
+import Cambioc from "./cambiocontraseña";
 export default function Ruteador({manejadorDeslogeo,...props}) {
     let meses=["Enero","febrero","marzo","abril","mayo","junio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]
     let d=new Date();
@@ -38,6 +39,7 @@ export default function Ruteador({manejadorDeslogeo,...props}) {
                 {props.admin? <Route exact path="/altausu" component={Altausu}/>:null}
                 {props.admin? <Route exact path="/altaempleado" component={Altaempleado}/>:null}
                 {props.admin? <Route exact path="/consultaempleado" component={Consultaemp}/>:null}
+                {props.admin? <Route exact path="/cambiocontrasenia" component={Cambioc}/>:null}
             </Router>
             <Foot></Foot>
         </div>
