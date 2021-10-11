@@ -96,7 +96,7 @@ export default function Consultausu() {
                                             <td>{unUsuario.nombre}</td>
                                             <td>{unUsuario.mail}</td>
                                             <td>{unUsuario.rol}</td>
-                                            <td>{unUsuario.baja}</td>
+                                            {unUsuario.baja?<td>Si</td>:<td>No</td>}
                                             {
                                                 !unUsuario.baja?
                                                 <td><button type="button" onClick={() => borrador(unUsuario.usuario.toLowerCase()) }>Inhabilitar</button></td>:
