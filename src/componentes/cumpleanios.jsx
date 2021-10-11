@@ -1,13 +1,35 @@
-import empleados from '../datos/variables'
+import servicios from '../servicio/services';
+import axios from 'axios';
+import React from 'react';
+import swal from 'sweetalert';
 export default function Cumpleanios() {
-    if (empleados.length===0){
-        return(
-            <div>
-                <h3>Este mes no cumpleaños ningún compañero</h3>
-            </div>
-        )
-        
-    }else{
+
+    const [empleados,setEmpleados]=React.useState([]);
+    const [lists,setLists]=React.useState(0);
+
+    function info (){
+        const listadoEmpleados=async()=>{
+            try{
+                let respuesta=await axios.get('/empleado',servicios.enviarToken());
+                setEmpleados(respuesta.data);
+                setLists(1);
+            }catch(e){
+                swal({
+                    title:"Error: ",
+                    text: e.response.data.error,
+                    icon:"warning",
+                    buttons:["aceptar",0]})
+                .then(()=>{
+                    return;
+                })
+            }
+        }
+        listadoEmpleados();
+    } 
+    React.useEffect(() => {
+        info();
+    }, []);
+    if (empleados.length!==0 && lists===1){
         return (
             <div className="cumple-tabla">
                 <h2> Festejemos junto a nuestros compañeros este día tan especial</h2><br/>
@@ -16,18 +38,16 @@ export default function Cumpleanios() {
                             <tr> 
                                 <th>Día</th> 
                                 <th>Empleado</th> 
-                                <th>Interno</th>
                             </tr>
                             {empleados.map((unEmpleado, index) => {
-                                let d=new Date(unEmpleado.cumpleanios);
+                                let d=new Date(unEmpleado.nacimiento);
                                 let dcomp=new Date();
                                 if(d.getMonth()===dcomp.getMonth()){  
                                     let dia=d.getDate();
                                     return (
                                         <tr key={index}>
                                             <td>{dia}</td> 
-                                            <td>{unEmpleado.nombre}</td>
-                                            <td>{unEmpleado.interno}</td>
+                                            <td>{unEmpleado.nombre} {unEmpleado.apellido}</td>
                                         </tr>         
                                         );
                                 }
@@ -37,6 +57,11 @@ export default function Cumpleanios() {
                 </table>
             </div>
         )    
+    }else{
+        return(
+            <div>
+                <h3>Este mes no cumpleaños ningún compañero</h3>
+            </div>
+        )
     }
-    
 }
