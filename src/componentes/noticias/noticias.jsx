@@ -1,9 +1,9 @@
-import img1 from '../images/certificadocovid.jpg';
-import img2 from '../images/comedor-empresa.jpg';
-import img3 from '../images/janne-rieck-6-7IzyoOfqc-unsplash.jpg';
-import img4 from '../images/lactario.jpg';
-import img5 from '../images/capacitacion.jpg';
-import img6 from '../images/guardabici.jpg';
+import img1 from '../../images/certificadocovid.jpg';
+import img2 from '../../images/comedor-empresa.jpg';
+import img3 from '../../images/janne-rieck-6-7IzyoOfqc-unsplash.jpg';
+import img4 from '../../images/lactario.jpg';
+import img5 from '../../images/capacitacion.jpg';
+import img6 from '../../images/guardabici.jpg';
 
 export default function Noticias() {
    

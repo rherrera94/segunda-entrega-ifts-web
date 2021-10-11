@@ -1,4 +1,4 @@
-import servicios from '../servicio/services';
+import servicios from '../../servicio/services';
 import axios from 'axios';
 import React from 'react';
 import swal from 'sweetalert';

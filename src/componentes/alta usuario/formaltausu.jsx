@@ -1,11 +1,11 @@
 export default function Formaltausu({handleSubmit, ...props}) {
 return(
-    <div class="container">  
+    <div className="container">  
     <form id="contact" action="" method="post">
         <h3 className="alta-usu">Alta Usuario</h3>
         <h4 className="alta-usu">Ingrese la información requerida para el alta de usuario</h4>
         <fieldset>
-        <input name="usuario" placeholder="Nombre de usuario" type="text" tabIndex="1" required autofocus value={props.nombreUsuario} onChange={props.manejadorUsuarioCambio}/>
+        <input name="usuario" placeholder="Nombre de usuario" type="text" tabIndex="1" required autoFocus value={props.nombreUsuario} onChange={props.manejadorUsuarioCambio}/>
         </fieldset>
         <fieldset>
         <input name="email" placeholder="email" type="email" tabIndex="2" required value={props.email} onChange={props.manejadorEmailCambio}/>

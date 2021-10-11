@@ -1,17 +1,17 @@
 import React from "react";
 import {BrowserRouter as Router, Route} from "react-router-dom";
-import Navbar from './navbar';
-import Navadmin from "./navadmin";
-import Noticias from "./noticias";
+import Navbar from './navbars/navbar';
+import Navadmin from "./navbars/navadmin";
+import Noticias from "./noticias/noticias";
 import Foot from "./piepagina";
-import Cumpleanios from "./cumpleanios";
-import Capacitacion from "./capacitacion";
-import Contacto from "./contacto";
-import Consultausu from "./consultausu";
-import Altausu from "./altausu";
-import Altaempleado from "./altaempleado";
-import Consultaemp from "./consultaemp";
-import Cambioc from "./cambiocontraseña";
+import Cumpleanios from "./cumpleanios/cumpleanios";
+import Capacitacion from "./capacitacion/capacitacion";
+import Contacto from "./contacto/contacto";
+import Consultausu from "./consulta usuario/consultausu";
+import Altausu from "./alta usuario/altausu";
+import Altaempleado from "./alta empleado/altaempleado";
+import Consultaemp from "./consulta empleado/consultaemp";
+import Cambioc from "./contrasenia/cambiocontraseña";
 export default function Ruteador({manejadorDeslogeo,...props}) {
     let meses=["Enero","febrero","marzo","abril","mayo","junio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]
     let d=new Date();

@@ -1,4 +1,4 @@
-import cursos from '../datos/cursos'
+import cursos from '../../datos/cursos'
 export default function Capacitacion() {
     if (cursos.length===0){
         return(

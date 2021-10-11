@@ -1,11 +1,11 @@
 export default function Formaltaemp({handleSubmit, ...props}) {
     return(
-        <div class="container">  
+        <div className="container">  
         <form id="contact" action="" method="post">
             <h3 className="alta-usu">Alta Empleado</h3>
             <h4 className="alta-usu">Ingrese la información requerida para el alta del empleado</h4>
             <fieldset>
-            <input name="nombre" placeholder="Nombre del empleado" type="text" tabIndex="1" required autofocus value={props.nombre} onChange={props.manejadorNombreCambio}/>
+            <input name="nombre" placeholder="Nombre del empleado" type="text" tabIndex="1" required autoFocus value={props.nombre} onChange={props.manejadorNombreCambio}/>
             </fieldset>
             <fieldset>
             <input name="apellido" placeholder="Apellido del empleado" type="text" tabIndex="2" required value={props.apellido} onChange={props.manejadorApellidoCambio}/>

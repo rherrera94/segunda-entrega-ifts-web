@@ -1,7 +1,7 @@
 import Formaltaemp from "./formuempleado";
 import axios from "axios";
 import React, { useState } from 'react';
-import servicios from "../servicio/services";
+import servicios from "../../servicio/services";
 import { useHistory } from 'react-router-dom';
 import swal from 'sweetalert';
 export default function Altaempleado() {

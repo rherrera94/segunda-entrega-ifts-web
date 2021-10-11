@@ -1,16 +1,16 @@
-import servicios from '../servicio/services';
+import servicios from '../../servicio/services';
 import axios from 'axios';
 import React from 'react';
 import swal from 'sweetalert';
-export default function Consultaemp() {
+export default function Consultausu() {
 
     const [information,setInformation]=React.useState([]);
     const [lists,setLists]=React.useState(0);
 
     function info (){
-        const listadoEmpleados=async()=>{
+        const listadoUsuarios=async()=>{
             try{
-                let respuesta=await axios.get('/empleado',servicios.enviarToken());
+                let respuesta=await axios.get('/userinterno',servicios.enviarToken());
                 setInformation(respuesta.data);
                 setLists(1);
             }catch(e){
@@ -24,14 +24,14 @@ export default function Consultaemp() {
                 })
             }
         }
-        listadoEmpleados();
+        listadoUsuarios();
     } 
 
-    function borrador(empleado){
+    function borrador(usuario){
         const modificacion=async(user)=>{
             try{
                 //el null es por que en ese espacio van las opciones del body que en este caso ira vacio
-                await axios.put(`http://localhost:5500/empleado/borrado/${user}`,null,servicios.enviarToken());
+                await axios.put(`http://localhost:5500/userinterno/borrado/${user}`,null,servicios.enviarToken());
                 info();
             }catch(e){
                 swal({
@@ -44,14 +44,14 @@ export default function Consultaemp() {
                 })
             }
         }
-        modificacion(empleado);
+        modificacion(usuario);
     }
 
-    function rehabilitar(empleado){
+    function rehabilitar(usuario){
         const habilita=async(user)=>{
             try{
                 //el null es por que en ese espacio van las opciones del body que en este caso ira vacio
-                await axios.put('/empleado/rehabilitar/'+user,null,servicios.enviarToken());
+                await axios.put('/userinterno/rehabilitar/'+user,null,servicios.enviarToken());
                 info();
             }catch(e){
                 swal({
@@ -64,7 +64,7 @@ export default function Consultaemp() {
                 })
             }
         }
-        habilita(empleado);
+        habilita(usuario);
     }
 
     React.useEffect(() => {
@@ -75,34 +75,32 @@ export default function Consultaemp() {
         return (
             <div>
                 <div className="cumple-tabla">
-                <h2> Empleados existentes en la base de datos</h2><br/>
+                <h2> Usuarios existentes en la base de datos</h2><br/>
                 <table className="tabla-cumpleanios">
                         <tbody>
                             <tr> 
-                                <th>CUIL</th> 
+                                <th>Usuario</th> 
                                 <th>Apellido</th> 
                                 <th>Nombre</th>
                                 <th>Mail</th>
-                                <th>Nacimiento</th>
-                                <th>Cargo</th>
+                                <th>Rol</th>
                                 <th>Baja</th>
                                 <th>Acción</th>
                             </tr>
                             {information.map((unUsuario, index) => {
-                               let d=new Date(unUsuario.nacimiento);
+                               
                                     return (
                                         <tr key={index}>
-                                            <td>{unUsuario.cuil}</td> 
+                                            <td>{unUsuario.usuario}</td> 
                                             <td>{unUsuario.apellido}</td>
                                             <td>{unUsuario.nombre}</td>
                                             <td>{unUsuario.mail}</td>
-                                            <td>{d.getDay()}/{d.getMonth()}/{d.getFullYear()}</td>
-                                            <td>{unUsuario.cargo}</td>
-                                            {unUsuario.eliminado?<td>Si</td>:<td>No</td>}
+                                            <td>{unUsuario.rol}</td>
+                                            {unUsuario.baja?<td>Si</td>:<td>No</td>}
                                             {
-                                                !unUsuario.eliminado?
-                                                <td><button type="button" onClick={() => borrador(unUsuario.cuil) }>Dar de Baja</button></td>:
-                                                <td><button type="button" onClick={() => rehabilitar(unUsuario.cuil) }>rehabilitar</button></td>
+                                                !unUsuario.baja?
+                                                <td><button type="button" onClick={() => borrador(unUsuario.usuario.toLowerCase()) }>Inhabilitar</button></td>:
+                                                <td><button type="button" onClick={() => rehabilitar(unUsuario.usuario.toLowerCase()) }>rehabilitar</button></td>
                                             }
                                         </tr>         
                                         );
