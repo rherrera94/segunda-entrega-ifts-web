@@ -11,6 +11,7 @@ export default function Navadmin() {
                     <li><Link to="/altaempleado">Alta empleado</Link></li>
                     <li><Link to="/consultaempleado">Consulta empleados</Link></li>
                     <li><Link to="/capacitacionnew">Crear Capacitacion</Link></li>
+                    <li><Link to="/capacitacioneliminar">Eliminar Capacitacion</Link></li>
                 </ul>
             </div>
         </nav>

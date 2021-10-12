@@ -13,6 +13,7 @@ import Altaempleado from "./alta empleado/altaempleado";
 import Consultaemp from "./consulta empleado/consultaemp";
 import Cambioc from "./contrasenia/cambiocontraseña";
 import Altacurso from "./capacitacion/crearcapacitacion";
+import Capacitacioneliminar from "./capacitacion/eliminarCapacitacion";
 
 export default function Ruteador({manejadorDeslogeo,...props}) {
     let meses=["Enero","febrero","marzo","abril","mayo","junio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]
@@ -43,6 +44,7 @@ export default function Ruteador({manejadorDeslogeo,...props}) {
                 {props.admin? <Route exact path="/consultaempleado" component={Consultaemp}/>:null}
                 {props.admin? <Route exact path="/cambiocontrasenia" component={Cambioc}/>:null}
                 {props.admin? <Route exact path="/capacitacionnew" component={Altacurso}/>:null}
+                {props.admin? <Route exact path="/capacitacioneliminar" component={Capacitacioneliminar}/>:null}
             </Router>
             <Foot></Foot>
         </div>
