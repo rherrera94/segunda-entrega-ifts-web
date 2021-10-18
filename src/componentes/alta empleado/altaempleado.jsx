@@ -17,6 +17,14 @@ export default function Altaempleado() {
         try{
             const empleadoCreado = await axios.post('/empleado', {apellido,nombre,mail,nacimiento,cuil,cargo},servicios.enviarToken());
             if (empleadoCreado.status === 200) {
+                swal({
+                    title:"Exitoso: ",
+                    text: "El empleado ha sido ingresado",
+                    icon:"success",
+                    buttons:["aceptar",0]})
+                .then(()=>{
+                    return;
+                })
                 history.push("/"); 
             }
         }catch(e){

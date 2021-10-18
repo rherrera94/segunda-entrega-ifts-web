@@ -17,9 +17,17 @@ export default function Altausu() {
         try{
             const usuarioCreado = await axios.post('/userinterno', {usuario,contrasenia,email,cuil,rol},servicios.enviarToken());
             if (usuarioCreado.status === 200) {
+                swal({
+                    title:"Exitoso: ",
+                    text: "El usuario ha sido creado",
+                    icon:"success",
+                    buttons:["aceptar",0]})
+                .then(()=>{
+                    return;
+                })
                 history.push("/"); 
                 
-              }
+            }
         }catch(e){
             swal({
                 title:"Error: ",
