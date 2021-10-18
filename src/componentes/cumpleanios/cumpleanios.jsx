@@ -6,6 +6,7 @@ export default function Cumpleanios() {
 
     const [empleados,setEmpleados]=React.useState([]);
     const [lists,setLists]=React.useState(0);
+    var ingreso=0;
 
     function info (){
         const listadoEmpleados=async()=>{
@@ -45,6 +46,7 @@ export default function Cumpleanios() {
                                 let dcomp=new Date();
                                 if(d.getMonth()===dcomp.getMonth()){  
                                     let dia=d.getDate();
+                                    ingreso=1;
                                     return (
                                         <tr key={index}>
                                             <td>{dia}</td> 
@@ -52,6 +54,13 @@ export default function Cumpleanios() {
                                             <td>{unEmpleado.mail}</td>
                                         </tr>         
                                         );
+                                }
+                                if (ingreso===0 && index===(empleados.length-1)){
+                                    return(
+                                        <div>
+                                            <h3>Este mes no cumpleaños ningún compañero</h3>
+                                        </div>
+                                    ) 
                                 }
                                 return null;
                             })}
