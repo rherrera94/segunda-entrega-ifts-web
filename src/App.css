@@ -222,12 +222,13 @@ h5{
   flex-direction: column;
   align-items: center;
   padding:40px 30px;
-  background:rgb(167, 165, 165);
+  background:rgba(236, 209, 167, 0.733);
   border-radius:14px;
   margin:auto;
   top:50%;
   margin-top: 10%;
 }
+
 .centro-login{
     display:flex;
     flex-direction: column;
@@ -256,7 +257,7 @@ h5{
   color:#999;
 }
 .log-btn{
-  background:#0AC986;
+  background:#065a3d;
   display:inline-block;
   align-content: center;
   width:50%;
@@ -356,6 +357,13 @@ fieldset {
   display:flex;
   flex-direction: column;
   align-items: center;
+}
+.navbar-admin{
+  background-color: rgb(236, 210, 167);
+  max-height: 30px;
+}
+.pie-estilo{
+  background-color: rgb(236, 210, 167);
 }
 
 

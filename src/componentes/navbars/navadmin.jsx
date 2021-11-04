@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 export default function Navadmin() {
     return (
-        <nav className="navbar">
+        <nav className="navbar navbar-admin">
             <div className="enlaces">
                 <ul className="barra-links">
                     <li><Link to="/altausu">Alta usuario</Link></li>
