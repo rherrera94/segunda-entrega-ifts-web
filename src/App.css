@@ -392,5 +392,8 @@ fieldset {
   background-color: rgb(2, 97, 2);
   border-radius: 10px;
 }
-
+.btn-salir{
+  height: 40px;
+  width: 40px;
+}
 

@@ -14,7 +14,7 @@ import Consultaemp from "./consulta empleado/consultaemp";
 import Cambioc from "./contrasenia/cambiocontraseña";
 import Altacurso from "./capacitacion/crearcapacitacion";
 import Capacitacioneliminar from "./capacitacion/eliminarCapacitacion";
-
+import Salir from "../images/boton-salir.jpg"
 export default function Ruteador({manejadorDeslogeo,...props}) {
     let meses=["Enero","febrero","marzo","abril","mayo","junio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]
     let d=new Date();
@@ -23,7 +23,7 @@ export default function Ruteador({manejadorDeslogeo,...props}) {
         <div>
             <Router>
                 <div className="deslogeo-salir"> 
-                    <button onClick={manejadorDeslogeo}>Salir</button>
+                    <input type="image" src={Salir} className="btn-salir" onClick={manejadorDeslogeo} style={{width:"100%"}} alt= "cerrar"></input>
                 </div>
                 <Navbar></Navbar>
                 {
