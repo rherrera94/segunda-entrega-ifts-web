@@ -6,7 +6,7 @@ import Ruteador from './componentes/ruteador';
 import servicios from "./servicio/services";
 import Login from './componentes/login';
 import swal from 'sweetalert';
-
+import Foot from './componentes/piepagina';
 function App() {
   const [nombreUsuario,setNombreUsuario] = useState('');
   const [contrasenia,setContrasenia] = useState('');
@@ -95,7 +95,11 @@ function App() {
         manejadorUsuarioCambio={({target}) => setNombreUsuario(target.value)}
         manejadorContraseniaCambio={({target}) => setContrasenia(target.value)}
         handleSubmit={logeo}></Login>
+
       } 
+      {
+       usuario? <div></div>:<Foot></Foot>
+      }
     </div>
   );
 }
