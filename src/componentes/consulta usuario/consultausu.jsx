@@ -99,8 +99,8 @@ export default function Consultausu() {
                                             {unUsuario.baja?<td>Si</td>:<td>No</td>}
                                             {
                                                 !unUsuario.baja?
-                                                <td><button type="button" onClick={() => borrador(unUsuario.usuario.toLowerCase()) }>Inhabilitar</button></td>:
-                                                <td><button type="button" onClick={() => rehabilitar(unUsuario.usuario.toLowerCase()) }>rehabilitar</button></td>
+                                                <td><button type="button" onClick={() => borrador(unUsuario.usuario.toLowerCase()) } className="btn-dar-baja">Inhabilitar</button></td>:
+                                                <td><button type="button" onClick={() => rehabilitar(unUsuario.usuario.toLowerCase()) } className="btn-rehabilitar">rehabilitar</button></td>
                                             }
                                         </tr>         
                                         );

@@ -106,13 +106,16 @@ p{
 }
 .tabla-cumpleanios{
   border-collapse:collapse;
-  width:50%;
+  width:80%;
   border:1px solid gray;
   text-align: center;
 }
 
 th{
-  background-color: papayawhip;
+  background-color: rgb(228, 213, 188);
+}
+tr{
+  border: 1.5px solid black;
 }
 .cumple-tabla{
   display: flex;
@@ -222,7 +225,7 @@ h5{
   flex-direction: column;
   align-items: center;
   padding:40px 30px;
-  background:rgba(236, 209, 167, 0.733);
+  background:rgba(168, 170, 90, 0.733);
   border-radius:14px;
   margin:auto;
   top:50%;
@@ -372,6 +375,22 @@ fieldset {
   background-size: 100%;
   background-repeat: no-repeat;
   background-position-x: center;
+}
+.btn-dar-baja{
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+    color:white;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: rgb(139, 3, 3);
+    border-radius: 10px;
+}
+.btn-rehabilitar{
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+  color:white;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: rgb(2, 97, 2);
+  border-radius: 10px;
 }
 
 

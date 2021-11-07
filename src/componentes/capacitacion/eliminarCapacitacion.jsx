@@ -89,8 +89,8 @@ export default function Capacitacioneliminar() {
                                             {unCapacitacion.eliminada?<td>Si</td>:<td>No</td>}
                                             {
                                                 !unCapacitacion.eliminada?
-                                                <td><button type="button" onClick={() => borrador(unCapacitacion.id) }>Dar de Baja</button></td>:
-                                                <td><button type="button" onClick={() => rehabilitar(unCapacitacion.id) }>rehabilitar</button></td>
+                                                <td><button type="button" onClick={() => borrador(unCapacitacion.id) } className="btn-dar-baja">Dar de Baja</button></td>:
+                                                <td><button type="button" onClick={() => rehabilitar(unCapacitacion.id) } className="btn-rehabilitar">rehabilitar</button></td>
                                             }
                                         </tr>         
                                     )

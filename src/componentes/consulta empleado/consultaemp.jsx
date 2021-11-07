@@ -101,8 +101,8 @@ export default function Consultaemp() {
                                             {unUsuario.eliminado?<td>Si</td>:<td>No</td>}
                                             {
                                                 !unUsuario.eliminado?
-                                                <td><button type="button" onClick={() => borrador(unUsuario.cuil) }>Dar de Baja</button></td>:
-                                                <td><button type="button" onClick={() => rehabilitar(unUsuario.cuil) }>rehabilitar</button></td>
+                                                <td><button type="button" onClick={() => borrador(unUsuario.cuil) } className="btn-dar-baja">Dar de Baja</button></td>:
+                                                <td><button type="button" onClick={() => rehabilitar(unUsuario.cuil) }className="btn-rehabilitar">rehabilitar</button></td>
                                             }
                                         </tr>         
                                         );
