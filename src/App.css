@@ -396,4 +396,10 @@ fieldset {
   height: 40px;
   width: 40px;
 }
-
+.rolusu{
+  width:70%;
+  font-size:20px;
+  height: 22px;
+  margin-bottom: 10px;
+  text-align: center;
+}

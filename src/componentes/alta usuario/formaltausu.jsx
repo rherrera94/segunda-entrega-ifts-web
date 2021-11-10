@@ -17,8 +17,8 @@ return(
         <input name="contrasenia" placeholder="contraseña" type="password" tabIndex="4" required value={props.constrasenia} onChange={props.manejadorContraseniaCambio}/>
         </div>
         <div>
-        
-        <select name="rol" required value={props.rol} onChange={props.manejadorRolCambio}>
+        <label for="rol">Rol de usuario: </label>
+        <select name="rol" required value={props.rol} onChange={props.manejadorRolCambio} className="rolusu">
             <option>administrador</option>
             <option>empleado</option>
         </select>
