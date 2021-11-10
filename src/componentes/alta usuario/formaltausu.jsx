@@ -17,7 +17,12 @@ return(
         <input name="contrasenia" placeholder="contraseña" type="password" tabIndex="4" required value={props.constrasenia} onChange={props.manejadorContraseniaCambio}/>
         </div>
         <div>
-        <input name="rol" placeholder="ingrese el rol" type="text" tabIndex="5" required value={props.rol} onChange={props.manejadorRolCambio}/>
+        
+        <select name="rol" required value={props.rol} onChange={props.manejadorRolCambio}>
+            <option>administrador</option>
+            <option>empleado</option>
+        </select>
+        
         </div>
         <div className="boton-nuevo-usu">
         <button name="submit" type="submit" id="contact-submit" onClick={handleSubmit}>Crear Usuario</button>
